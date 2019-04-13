@@ -1,0 +1,62 @@
+version: "3"
+services:
+
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile-Mysql
+    ports:
+      - "3306"
+      - "33060"
+    image: taskmgmt/mysql-server
+    container_name: taskmgmt/mysql-server
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  rabbitmq:
+    build:
+      context: .
+      dockerfile: Dockerfile-Rabbitmq
+    ports:
+      - "5672"
+      - "15672"
+    image: taskmgmt/rabbitmq-server
+    container_name: taskmgmt/rabbitmq-server
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile-Redis
+    ports:
+      - "6379"
+    image: taskmgmt/redis-server
+    container_name: taskmgmt/redis-server
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-App
+    image: taskmgmt/app
+    container_name: taskmgmt/app
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile-Mysql
+    ports:
+      - "5555"
+    image: taskmgmt/flower-webapp
+    container_name: taskmgmt/flower-webapp
+    deploy:
+      restart_policy:
+        condition: on-failure
