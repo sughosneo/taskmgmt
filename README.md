@@ -25,4 +25,4 @@ https://www.cs.cmu.edu/~./enron/
     https://github.com/giantswarm/celery-flower
 
 #### Support & Contact :
-   Contact @sughoshneo    
+   Contact sughoshneo    
